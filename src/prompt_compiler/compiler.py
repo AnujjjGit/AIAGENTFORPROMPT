@@ -43,7 +43,9 @@ def _render_xml(spec: PromptSpec, profile: ModelProfile) -> str:
         f'  <item key="{escape(item.key)}">{escape(item.value)}</item>'
         for item in spec.selected_context
     )
-    constraints = "\n".join(f"  <constraint>{escape(item)}</constraint>" for item in spec.constraints)
+    constraints = "\n".join(
+        f"  <constraint>{escape(item)}</constraint>" for item in spec.constraints
+    )
     guidance = "\n".join(f"  <rule>{escape(item)}</rule>" for item in profile.guidance)
 
     blocks = [f"<task>\n{escape(spec.objective)}\n</task>"]
